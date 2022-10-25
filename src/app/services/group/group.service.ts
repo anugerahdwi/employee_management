@@ -27,6 +27,12 @@ export class GroupService {
 		return this.http.get<Groups>('http://localhost:3000/groups/' + id);
 	}
 
+	// Search Data Group
+	// mencari data group berdasarkan parameter
+	searchDataGroup(parameter: string, value: string) {
+		return this.http.get<Groups[]>('http://localhost:3000/groups?' + parameter + '_like=' + value);
+	}
+
 	// Add Data Group
 	// menambahkan data group baru kedalam database
     addDataGroup(payload: Groups) {
@@ -41,7 +47,7 @@ export class GroupService {
 
 	// Delete Data Group
 	// menghapus data group yang ada didalam database
-    deleteDataGroup(id: number){
+    deleteDataGroup(id: number) {
 		return this.http.delete<Groups>('http://localhost:3000/groups/' + id);
 	}
 }

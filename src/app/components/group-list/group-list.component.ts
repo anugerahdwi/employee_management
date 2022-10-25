@@ -39,10 +39,13 @@ export class GroupListComponent implements OnInit {
 	// mencari data group dan menampilkan kedalam tabel
 	searchDataGroup() {
 		if (this.searchGroup !== '') {
-			let searchValue = this.searchGroup.toLocaleLowerCase();
-
-			this.allGroup = this.allGroup.filter((data: any) => {
-				return data.group_name.toLocaleLowerCase().match(searchValue);   
+			// mencari data employee berdasarkan 'group_name'
+			this.groupService.searchDataGroup('group_name', this.searchGroup).subscribe(res => {
+				if (res.length == 0) {
+					this.allGroup = [];
+				} else {
+					this.allGroup = res;
+				}
 			});
 		}
 		else { 

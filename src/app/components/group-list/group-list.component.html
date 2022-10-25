@@ -18,6 +18,9 @@
                                     <button type="button" class="btn btn-sm btn btn-outline-success shadow-none">Add Group</button>
                                 </a>
                             </div>
+                            <div class="col-12 d-flex flex-column justify-content-center align-items-start">
+                                <div class="text-danger mt-3" style="font-size: 0.7rem;">* Search by group name.</div>
+                            </div>
                         </div>
                     </div>
                     <div class="table-responsive">
@@ -44,12 +47,12 @@
                         </table>
                     </div>
                     <div class="row mt-2 mb-0">
-                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 d-flex flex-column justify-content-center align-items-center align-items-sm-center align-items-md-start align-items-lg-start align-items-xl-start mb-3">
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 d-flex flex-column justify-content-center align-items-center align-items-sm-center align-items-md-center align-items-lg-start align-items-xl-start mb-3">
                             <select (change)="setDataTableSize($event)" class="w-auto form-select form-select-sm shadow-none">
                                 <option *ngFor="let size of tableSize" [ngValue]="size">{{ size }}</option>
                             </select>
                         </div>
-                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 d-flex flex-column justify-content-center align-items-center align-items-sm-center align-items-md-end align-items-lg-end align-items-xl-end mb-3">
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 d-flex flex-column justify-content-center align-items-center align-items-sm-center align-items-md-center align-items-lg-end align-items-xl-end mb-3">
                             <pagination-controls previousLabel="Prev" nextLabel="Next" (pageChange)="setDataTablePagination($event)" style="font-size: 13px;"></pagination-controls>
                         </div>
                     </div>

@@ -27,6 +27,12 @@ export class EmployeeService {
 		return this.http.get<Employees>('http://localhost:3000/employees/' + id);
 	}
 
+	// Search Data Employee
+	// mencari data employee berdasarkan parameter
+	searchDataEmployee(parameter: string, value: string) {
+		return this.http.get<Employees[]>('http://localhost:3000/employees?' + parameter + '_like=' + value);
+	}
+
 	// Add Data Employee
 	// menambahkan data employee baru kedalam database
     addDataEmployee(payload: Employees) {
@@ -41,7 +47,7 @@ export class EmployeeService {
 
 	// Delete Data Employee
 	// menghapus data employee yang ada didalam database
-    deleteDataEmployee(id: number){
+    deleteDataEmployee(id: number) {
 		return this.http.delete<Employees>('http://localhost:3000/employees/' + id);
 	}
 }

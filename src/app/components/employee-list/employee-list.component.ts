@@ -39,10 +39,41 @@ export class EmployeeListComponent implements OnInit {
 	// mencari data employee dan menampilkan kedalam tabel
 	searchDataEmployee() {
 		if (this.searchEmployee !== '') {
-			let searchValue = this.searchEmployee.toLocaleLowerCase();
-
-			this.allEmployee = this.allEmployee.filter((data: any) => {
-				return data.first_name.toLocaleLowerCase().match(searchValue);   
+			// mencari data employee berdasarkan 'first_name'
+			this.employeeService.searchDataEmployee('first_name', this.searchEmployee).subscribe(res => {
+				if (res.length == 0) {
+					// mencari data employee berdasarkan 'last_name'
+					this.employeeService.searchDataEmployee('last_name', this.searchEmployee).subscribe(res => {
+						if (res.length == 0) {
+							// mencari data employee berdasarkan 'email'
+							this.employeeService.searchDataEmployee('email', this.searchEmployee).subscribe(res => {
+								if (res.length == 0) {
+									// mencari data employee berdasarkan 'username'
+									this.employeeService.searchDataEmployee('username', this.searchEmployee).subscribe(res => {
+										if (res.length == 0) {
+											// mencari data employee berdasarkan 'group'
+											this.employeeService.searchDataEmployee('group', this.searchEmployee).subscribe(res => {
+												if (res.length == 0) {
+													this.allEmployee = [];
+												} else {
+													this.allEmployee = res;
+												}
+											});
+										} else {
+											this.allEmployee = res;
+										}
+									});
+								} else {
+									this.allEmployee = res;
+								}
+							});
+						} else {
+							this.allEmployee = res;
+						}
+					});
+				} else {
+					this.allEmployee = res;
+				}
 			});
 		}
 		else { 
