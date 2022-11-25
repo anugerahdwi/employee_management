@@ -8,14 +8,14 @@
                     <h5 class="fw-bold mb-4">Employee List</h5>
                     <div class="mb-3">
                         <div class="row">
-                            <div class="col-7 d-flex flex-column justify-content-center align-items-start">
+                            <div class="col-6 d-flex flex-column justify-content-center align-items-start">
                                 <div class="w-auto">
                                     <input type="text" class="form-control form-control-sm shadow-none" [(ngModel)]="searchEmployee" (input)="searchDataEmployee()" placeholder="Search employee ...">
                                 </div>
                             </div>
-                            <div class="col-5 d-flex flex-column justify-content-center align-items-end">
+                            <div class="col-6 d-flex flex-column justify-content-center align-items-end">
                                 <a [routerLink]="'/employee-add'">
-                                    <button type="button" class="btn btn-sm btn btn-outline-success shadow-none">Add Employee</button>
+                                    <button type="button" class="btn btn-sm btn btn-outline-success shadow-none"><i class="bi bi-plus-circle"></i> Add Employee</button>
                                 </a>
                             </div>
                             <div class="col-12 d-flex flex-column justify-content-center align-items-start">
@@ -31,7 +31,7 @@
                                     <th scope="col" style="word-wrap: break-word; min-width: 350px; max-width: 350px;">Name</th>
                                     <th scope="col" style="word-wrap: break-word; min-width: 150px; max-width: 150px;">Username</th>
                                     <th scope="col" style="word-wrap: break-word; min-width: 100px; max-width: 100px;">Group</th>
-                                    <th scope="col">Actions</th>
+                                    <th scope="col" style="word-wrap: break-word; min-width: 100px; max-width: 100px;">Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -43,22 +43,22 @@
                                             <div class="ms-3">
                                                 <p class="text-primary fw-bold mb-1">{{ data.first_name + ' ' + data.last_name }}</p>
                                                 <span>First Name: </span><span class="fw-bold mb-1">{{ data.first_name }}</span> | <span>Last Name: </span><span class="fw-bold mb-1">{{ data.last_name }}</span>
-                                                <p class="text-muted mt-1 mb-0">{{ data.email }}</p>
+                                                <p class="text-muted mt-1 mb-0"><i class="bi bi-envelope-fill"></i> {{ data.email }}</p>
                                             </div>
                                         </div>
                                     </td>
                                     <td>
                                         <p class="mb-1">{{ data.username }}</p>
-                                        <span class="badge rounded-pill text-bg-success mb-0" *ngIf="(data.status == 'active')">{{ data.status }}</span>
-                                        <span class="badge rounded-pill text-bg-danger mb-0" *ngIf="(data.status == 'inactive')">{{ data.status }}</span>
+                                        <h6><span class="badge rounded-pill text-bg-success mb-0" *ngIf="(data.status == 'active')">{{ data.status }}</span></h6>
+                                        <h6><span class="badge rounded-pill text-bg-danger mb-0" *ngIf="(data.status == 'inactive')">{{ data.status }}</span></h6>
                                     </td>
                                     <td>
                                         {{ data.group }}
                                     </td>
                                     <td>
-                                        <button type="button" class="btn btn-sm btn-outline-secondary shadow-none mb-1 mb-sm-1 mb-md-1 mb-lg-0 mb-xl-0 me-1" [routerLink]="['/employee-detail', data.id]">Detail</button>
-                                        <button type="button" class="btn btn-sm btn-outline-warning shadow-none mb-1 mb-sm-1 mb-md-1 mb-lg-0 mb-xl-0 me-1" [routerLink]="['/employee-edit', data.id]">Edit</button>
-                                        <button type="button" class="btn btn-sm btn-outline-danger shadow-none" [routerLink]="['/employee-delete', data.id]">Delete</button>
+                                        <button type="button" class="btn btn-sm btn-outline-secondary shadow-none mb-1 mb-sm-1 mb-md-1 mb-lg-0 mb-xl-0 me-1" [routerLink]="['/employee-detail', data.id]"><i class="bi bi-search"></i> Detail</button>
+                                        <button type="button" class="btn btn-sm btn-outline-warning shadow-none mb-1 mb-sm-1 mb-md-1 mb-lg-0 mb-xl-0 me-1" [routerLink]="['/employee-edit', data.id]"><i class="bi bi-pencil-square"></i> Edit</button>
+                                        <button type="button" class="btn btn-sm btn-outline-danger shadow-none" [routerLink]="['/employee-delete', data.id]"><i class="bi bi-trash"></i> Delete</button>
                                     </td>
                                 </tr>
                             </tbody>
