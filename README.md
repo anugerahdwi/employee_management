@@ -5,6 +5,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 ## Utilities
 
 - **Bootstrap** version 5.2.2 for styling.
+- **Bootstrap Icons** version 1.9.1 for styling icons.
 - **JSON Server** version 0.17.0 for REST API and database.
 - **NGX Toastr** version 15.2.1 for toast notification.
 - **NGX Pagination** version 6.0.2 for table pagination.
