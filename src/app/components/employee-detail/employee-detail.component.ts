@@ -22,7 +22,7 @@ export class EmployeeDetailComponent implements OnInit {
 		username: '',
 		email: '',
 		birth_date: '',
-		basic_salary: 0,
+		basic_salary: '',
 		status: '',
 		group: '',
 		description: ''

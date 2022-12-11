@@ -5,7 +5,7 @@ export interface Employees {
     username: string;
     email: string;
     birth_date: string;
-    basic_salary: number;
+    basic_salary: string;
     status: string;
     group: string;
     description: string;

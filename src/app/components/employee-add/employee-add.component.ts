@@ -38,7 +38,7 @@ export class EmployeeAddComponent implements OnInit {
 		username: '',
 		email: '',
 		birth_date: '',
-		basic_salary: 0,
+		basic_salary: '',
 		status: '',
 		group: '',
 		description: ''
@@ -77,7 +77,7 @@ export class EmployeeAddComponent implements OnInit {
 			username: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(20)]],
 			email: ['', [Validators.required, Validators.email]],
 			birth_date: ['', [Validators.required]],
-			basic_salary: ['', [Validators.required]],
+			basic_salary: ['', [Validators.required, Validators.pattern("^[0-9]*$")]],
 			status: ['', [Validators.required]],
 			group: ['', [Validators.required]],
 			description: ['', [Validators.required]]

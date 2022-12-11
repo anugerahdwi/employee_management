@@ -67,10 +67,14 @@
                             </div>
                             <div class="mb-3">
                                 <label for="basic_salary" class="form-label"><small>Basic Salary</small></label>
-                                <input type="number" id="basic_salary" class="form-control form-control-sm shadow-none" formControlName="basic_salary" [(ngModel)]="editEmployeeFormData.basic_salary" placeholder="Basic salary"
-                                        [ngClass]="{ 'is-invalid': submitted && f['basic_salary'].errors }" />
-                                <div *ngIf="submitted && f['basic_salary'].errors" class="invalid-feedback">
-                                    <div *ngIf="f['basic_salary'].errors['required']"><small>Basic salary is required & must be numeric.</small></div>
+                                <div class="input-group">
+                                    <span class="input-group-text"><small>Rp.</small></span>
+                                    <input type="text" id="basic_salary" class="form-control form-control-sm shadow-none" formControlName="basic_salary" [(ngModel)]="editEmployeeFormData.basic_salary" placeholder="Basic salary"
+                                            [ngClass]="{ 'is-invalid': submitted && f['basic_salary'].errors }" />
+                                    <div *ngIf="submitted && f['basic_salary'].errors" class="invalid-feedback">
+                                        <div *ngIf="f['basic_salary'].errors['required']"><small>Basic salary is required.</small></div>
+                                        <div *ngIf="f['basic_salary'].errors['pattern']"><small>Basic salary must be numeric.</small></div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="mb-3">
