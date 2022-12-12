@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, NavigationExtras } from '@angular/router';
 
 import { Employees } from '../../interfaces/employees';
 
@@ -10,7 +11,13 @@ import { EmployeeService } from '../../services/employee/employee.service';
 	styleUrls: ['./employee-list.component.css']
 })
 export class EmployeeListComponent implements OnInit {
-	constructor(private employeeService: EmployeeService) { }
+	constructor(private router: Router, private employeeService: EmployeeService) {
+		// cari data employee jika ada data pencarian employee sebelumnya
+		if (history.state.data != null) {
+			this.searchEmployee = history.state.data.search;
+			this.searchDataEmployee();
+		}
+	}
 
 	// Data Employee dan Search
 	allEmployee: Employees[] = [];
@@ -96,5 +103,19 @@ export class EmployeeListComponent implements OnInit {
 	setDataTablePagination(event: any) {
 		this.currentPage = event;
 		this.dataEmployee();
+	}
+
+	// Router Navigate
+	// mengarahkan ke halaman employee detail/edit/delete dengan membawa data pencarian employee
+	routerNavigate(page: string, employeeId: number) {
+		let dataSearch = this.searchEmployee;
+		let dataExtras = { search: dataSearch }
+		let navigationExtras: NavigationExtras = {
+			state: {
+				data: dataExtras
+			}
+		};
+
+		this.router.navigate(['/' + page, employeeId], navigationExtras);
 	}
 }

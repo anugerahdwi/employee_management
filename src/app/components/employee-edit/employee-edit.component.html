@@ -109,9 +109,7 @@
                                 </div>
                             </div>
                             <button type="submit" class="btn btn-sm btn-warning shadow-none me-1">Edit Employee</button>
-                            <a [routerLink]="'/employee-list'">
-                                <button type="button" class="btn btn-sm btn-light shadow-none">Cancel</button>
-                            </a>
+                            <button type="button" class="btn btn-sm btn-light shadow-none" (click)="routerNavigateBack()">Cancel</button>
                         </form>
                     </div>
                 </div>

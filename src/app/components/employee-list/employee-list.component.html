@@ -56,9 +56,9 @@
                                         {{ data.group }}
                                     </td>
                                     <td>
-                                        <button type="button" class="btn btn-sm btn-outline-secondary shadow-none mb-1 mb-sm-1 mb-md-1 mb-lg-0 mb-xl-0 me-1" [routerLink]="['/employee-detail', data.id]"><i class="bi bi-search"></i> Detail</button>
-                                        <button type="button" class="btn btn-sm btn-outline-warning shadow-none mb-1 mb-sm-1 mb-md-1 mb-lg-0 mb-xl-0 me-1" [routerLink]="['/employee-edit', data.id]"><i class="bi bi-pencil-square"></i> Edit</button>
-                                        <button type="button" class="btn btn-sm btn-outline-danger shadow-none" [routerLink]="['/employee-delete', data.id]"><i class="bi bi-trash"></i> Delete</button>
+                                        <button type="button" class="btn btn-sm btn-outline-secondary shadow-none mb-1 mb-sm-1 mb-md-1 mb-lg-0 mb-xl-0 me-1" (click)="routerNavigate('employee-detail', data.id)"><i class="bi bi-search"></i> Detail</button>
+                                        <button type="button" class="btn btn-sm btn-outline-warning shadow-none mb-1 mb-sm-1 mb-md-1 mb-lg-0 mb-xl-0 me-1" (click)="routerNavigate('employee-edit', data.id)"><i class="bi bi-pencil-square"></i> Edit</button>
+                                        <button type="button" class="btn btn-sm btn-outline-danger shadow-none" (click)="routerNavigate('employee-delete', data.id)"><i class="bi bi-trash"></i> Delete</button>
                                     </td>
                                 </tr>
                             </tbody>

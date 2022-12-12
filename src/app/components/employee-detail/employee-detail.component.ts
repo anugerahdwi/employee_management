@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router, NavigationExtras } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
 
 import { Employees } from '../../interfaces/employees';
@@ -12,7 +12,15 @@ import { EmployeeService } from '../../services/employee/employee.service';
 	styleUrls: ['./employee-detail.component.css']
 })
 export class EmployeeDetailComponent implements OnInit {
-	constructor(private route: ActivatedRoute, private employeeService: EmployeeService) { }
+	constructor(private route: ActivatedRoute, private router: Router, private employeeService: EmployeeService) {
+		// simpan sementara data pencarian employee jika ada
+		if (history.state.data.search != '') {
+			this.searchEmployee = history.state.data.search;
+		}
+	}
+
+	// Data Search Employee
+	searchEmployee = '';
 
 	// Data Form Detail Employee
 	detailEmployeeFormData: Employees = {
@@ -55,5 +63,22 @@ export class EmployeeDetailComponent implements OnInit {
 		this.employeeService.getDataEmployeeById(id).subscribe(res => {
 			this.detailEmployeeFormData = res;
 		});
+	}
+
+	// Router Navigate Kembali
+	// mengarahkan kembali ke halaman employee list dengan membawa data pencarian employee
+	routerNavigateBack() {
+		if (this.searchEmployee != '') {
+			let dataExtras = { search: this.searchEmployee }
+			let navigationExtras: NavigationExtras = {
+				state: {
+					data: dataExtras
+				}
+			};
+	
+			this.router.navigate(['/employee-list'], navigationExtras);
+		} else {
+			this.router.navigate(['/employee-list']);
+		}
 	}
 }

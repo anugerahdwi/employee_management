@@ -59,9 +59,7 @@
                                 <label for="description" class="form-label"><small>Description</small></label>
                                 <textarea id="description" class="form-control form-control-sm shadow-none" formControlName="description" [value]="detailEmployeeFormData.description" placeholder="Description" rows="3" readonly></textarea>
                             </div>
-                            <a [routerLink]="'/employee-list'">
-                                <button type="button" class="btn btn-sm btn-secondary shadow-none">Ok</button>
-                            </a>
+                            <button type="button" class="btn btn-sm btn-secondary shadow-none" (click)="routerNavigateBack()">Ok</button>
                         </form>
                     </div>
                 </div>

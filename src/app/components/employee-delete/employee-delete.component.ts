@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, NavigationExtras } from '@angular/router';
 
 import { IndividualConfig  } from 'ngx-toastr';
 
@@ -14,10 +14,18 @@ import { EmployeeService } from '../../services/employee/employee.service';
 	styleUrls: ['./employee-delete.component.css']
 })
 export class EmployeeDeleteComponent implements OnInit {
-	constructor(private route: ActivatedRoute, private router: Router, private toastService: ToastService, private employeeService: EmployeeService) { }
+	constructor(private route: ActivatedRoute, private router: Router, private toastService: ToastService, private employeeService: EmployeeService) {
+		// simpan sementara data pencarian employee jika ada
+		if (history.state.data.search != '') {
+			this.searchEmployee = history.state.data.search;
+		}
+	}
 
 	// Inisialisasi Interface Toast
 	toast!: Toast;
+
+	// Data Search Employee
+	searchEmployee = '';
 
 	// Data Employee
 	employeeId = 0;
@@ -60,5 +68,22 @@ export class EmployeeDeleteComponent implements OnInit {
 				this.toastService.showToast(this.toast);
 			}
 		});
+	}
+
+	// Router Navigate Kembali
+	// mengarahkan kembali ke halaman employee list dengan membawa data pencarian employee
+	routerNavigateBack() {
+		if (this.searchEmployee != '') {
+			let dataExtras = { search: this.searchEmployee }
+			let navigationExtras: NavigationExtras = {
+				state: {
+					data: dataExtras
+				}
+			};
+	
+			this.router.navigate(['/employee-list'], navigationExtras);
+		} else {
+			this.router.navigate(['/employee-list']);
+		}
 	}
 }

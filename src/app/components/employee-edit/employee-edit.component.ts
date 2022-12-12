@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, NavigationExtras } from '@angular/router';
 import { AbstractControl, FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 
 import { IndividualConfig  } from 'ngx-toastr';
@@ -18,13 +18,21 @@ import { EmployeeService } from '../../services/employee/employee.service';
 	styleUrls: ['./employee-edit.component.css']
 })
 export class EmployeeEditComponent implements OnInit {
-	constructor(private route: ActivatedRoute, private router: Router, private formbuilder: FormBuilder, private toastService: ToastService, private groupService: GroupService, private employeeService: EmployeeService) { }
+	constructor(private route: ActivatedRoute, private router: Router, private formbuilder: FormBuilder, private toastService: ToastService, private groupService: GroupService, private employeeService: EmployeeService) {
+		// simpan sementara data pencarian employee jika ada
+		if (history.state.data.search != '') {
+			this.searchEmployee = history.state.data.search;
+		}
+	}
 
 	// Inisialisasi Interface Toast
 	toast!: Toast;
 
 	// Mengambil Tanggal Saat Ini
 	currentDate = new Date();
+
+	// Data Search Employee
+	searchEmployee = '';
 
 	// Data Group
 	allGroup: Groups[] = [];
@@ -132,6 +140,23 @@ export class EmployeeEditComponent implements OnInit {
 					this.toastService.showToast(this.toast);
 				}
 			});
+		}
+	}
+
+	// Router Navigate Kembali
+	// mengarahkan kembali ke halaman employee list dengan membawa data pencarian employee
+	routerNavigateBack() {
+		if (this.searchEmployee != '') {
+			let dataExtras = { search: this.searchEmployee }
+			let navigationExtras: NavigationExtras = {
+				state: {
+					data: dataExtras
+				}
+			};
+	
+			this.router.navigate(['/employee-list'], navigationExtras);
+		} else {
+			this.router.navigate(['/employee-list']);
 		}
 	}
 }
